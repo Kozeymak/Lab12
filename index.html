@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гусев Данила Павлович 12лаба</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>СПИСОК СТУДЕНТОВ</h1>
     <p>Заполните поля "Имя" и "Фамилия", а затем нажмите на кнопку "записать", чтобы сделать новую запись и отобразить студента в списке.</p>
     <h2>Форма</h2>
     <div id="app">
-       <label for="">Фамилия</label><br> <input placeholder="Иванов" v-model="surname"><br>
-        <label for="">Имя</label><br> <input placeholder="Иван" v-model="name"><br>
+        <div class="buttons2">
+            <label for="">Фамилия</label><br> <input placeholder="Иванов" v-model="surname"><br>
+            <label for="">Имя</label><br> <input placeholder="Иван" v-model="name"><br>
+        </div>
         <p>Кол-во знаков: {{  name.length + surname.length }}</p>
-        <button v-on:click="addStudent" v-bind:disabled="(name === '') || (surname === '')">Записать</button>
-        <h2>Список</h2>
-        <p v-if="students.length === 0">Список пуст</p>
-        <ol>
-            <li v-for="student in students">
-                {{ student }}
-            </li>
-        </ol>
+        <button v-on:click="addStudent" v-bind:disabled="(name === '') || (surname === '')" class="read">Записать</button>
+
+        <div class="list-container">
+            <h2>Список студентов</h2>
+            <p v-if="students.length === 0">Список пуст</p>
+            <ol>
+                <li v-for="student in students">
+                    {{ student }}
+                </li>
+            </ol>
+        </div>
     </div>
 <script>
     var app = new Vue({
