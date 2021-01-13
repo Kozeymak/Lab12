@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гусев Данила Павлович 12лаба</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <h1>СПИСОК СТУДЕНТОВ</h1>
+    <p>Заполните поля "Имя" и "Фамилия", а затем нажмите на кнопку "записать", чтобы сделать новую запись и отобразить студента в списке.</p>
+    <h2>Форма</h2>
+    <div id="app">
+       <label for="">Фамилия</label><br> <input placeholder="Иванов" v-model="surname"><br>
+        <label for="">Имя</label><br> <input placeholder="Иван" v-model="name"><br>
+        <p>Кол-во знаков: {{  name.length + surname.length }}</p>
+        <button v-on:click="addStudent" v-bind:disabled="(name === '') || (surname === '')">Записать</button>
+        <h2>Список</h2>
+        <p v-if="students.length === 0">Список пуст</p>
+        <ol>
+            <li v-for="student in students">
+                {{ student }}
+            </li>
+        </ol>
+    </div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            surname: '',
+            students: [],
+
+        },
+        methods: {
+            addStudent: function() {
+                this.name = this.name[0].toUpperCase() + this.name.slice(1).toLowerCase();
+                this.surname = this.surname[0].toUpperCase() + this.surname.slice(1).toLowerCase();
+                this.students.push(this.surname + ' ' + this.name);
+                this.name = '';
+                this.surname = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>
